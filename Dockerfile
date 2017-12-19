@@ -1,7 +1,7 @@
 # Multi-stage build - See https://docs.docker.com/engine/userguide/eng-image/multistage-build
 FROM ubnt/unms:0.11.1-alpha1 as unms
 
-FROM oznu/s6-node:8.9.1
+FROM oznu/s6-node:8.9.3
 
 # Copy UNMS app from offical image since the source code is not published at this time
 COPY --from=unms /home/app/unms /app
