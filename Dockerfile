@@ -1,5 +1,5 @@
 # Multi-stage build - See https://docs.docker.com/engine/userguide/eng-image/multistage-build
-FROM ubnt/unms:0.11.0 as unms
+FROM ubnt/unms:0.11.1-alpha1 as unms
 
 FROM oznu/s6-node:8.9.1
 
@@ -27,7 +27,8 @@ RUN devDeps="musl-dev gcc python python-dev py-pip libffi-dev openssl-dev" \
   && apk del ${devDeps} \
   && echo "abc ALL=(ALL) NOPASSWD: /usr/sbin/nginx -s *" >> /etc/sudoers
 
-ENV PATH=/app/node_modules/.bin:$PATH \
+ENV NODE_ENV=production \
+  PATH=/app/node_modules/.bin:$PATH \
   PGDATA=/config/postgres \
   POSTGRES_DB=unms \
   HOME=/var/lib/rabbitmq \
