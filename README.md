@@ -12,7 +12,6 @@ This image will run on most platforms that support Docker including [Docker for 
 docker run \
   -p 80:80 \
   -p 443:443 \
-  -e PUID=<UID> -e PGID=<GID> \
   -e TZ=<timezone> \
   -v </path/to/config>:/config \
   oznu/unms:latest
@@ -55,8 +54,6 @@ services:
       - 443:443
     environment:
       - TZ=Australia/Sydney
-      - PGID=1000
-      - PUID=1000
     volumes:
       - ./volumes/unms:/config
 ```
