@@ -108,16 +108,14 @@ RUN cd /tmp \
     && chmod +x /entrypoint.sh /cert.sh /letsencrypt.sh /fill-template.sh /copy-user-certs.sh
 # end ubnt/nginx docker file #
 
-# Remove -u from nginx scripts
-RUN sed -i 's/set -u//g' /cert.sh \
-    && sed -i 's/set -u//g' /letsencrypt.sh
-
 ENV PATH=/home/app/unms/node_modules/.bin:$PATH \
   PGDATA=/config/postgres \
   POSTGRES_DB=unms \
   QUIET_MODE=0 \
   PUBLIC_HTTPS_PORT=443 \
-  PUBLIC_WS_PORT=443
+  PUBLIC_WS_PORT=443 \
+  SECURE_LINK_SECRET=enigma \
+  SSL_CERT=""
 
 EXPOSE 80 443
 
