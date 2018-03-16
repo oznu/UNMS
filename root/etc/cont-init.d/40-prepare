@@ -13,9 +13,14 @@ ln -s /config/unms /home/app/unms/data
 [ -e /config/cert ] || mkdir -p /config/cert
 ln -s /config/cert /cert
 
-# Logs
+# UNMS Logs
 [ -e /config/unms/logs ] || mkdir -p /config/unms/logs
 chown -R nobody:nobody /config/unms/logs
 
+# Service Logs
+[ -e /config/logs ] || mkdir -p /config/logs
+chown -R nobody:nobody /config/logs
+
 # Fix hosts file
 echo "127.0.0.1 unms" >> /etc/hosts
+
