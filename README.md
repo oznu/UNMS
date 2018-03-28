@@ -1,4 +1,4 @@
-[![Docker Build Status](https://img.shields.io/docker/build/oznu/unms.svg?label=x64%20build&style=for-the-badge)](https://hub.docker.com/r/oznu/unms/) [![Travis](https://img.shields.io/travis/oznu/docker-unms.svg?label=arm%20build&style=for-the-badge)](https://travis-ci.org/oznu/docker-unms) [![GitHub release](https://img.shields.io/github/release/oznu/unms/all.svg?style=for-the-badge)](https://github.com/oznu/docker-unms/releases)
+[![Docker Build Status](https://img.shields.io/docker/build/oznu/unms.svg?label=x64%20build)](https://hub.docker.com/r/oznu/unms/) [![Travis](https://img.shields.io/travis/oznu/docker-unms.svg?label=arm%20build)](https://travis-ci.org/oznu/docker-unms) [![GitHub release](https://img.shields.io/github/release/oznu/unms/all.svg)](https://github.com/oznu/docker-unms/releases)
 
 # Docker UNMS
 
@@ -41,13 +41,20 @@ The parameters are split into two halves, separated by a colon, the left hand si
 * `-e PUBLIC_WS_PORT=443` - This should match the HTTPS port your are exposing to on the docker host
 * `-e SECURE_LINK_SECRET=` - Random key for secure link module. Set this to something random.
 
+## Limitations
+
+The Docker image, oznu/unms, is not maintained by or affiliated with Ubiquiti Networks. You should not expect any support from Ubiquiti when running UNMS using this image.
+
+* In-app upgrades will not work. You can upgrade UNMS by downloading the latest version of this image.
+* Device firmware upgrades initiated from UNMS may not work ([#7](https://github.com/oznu/docker-unms/issues/7)).
+
 ## Docker Compose
 
 ```yml
 version: '2'
 services:
   homebridge:
-    image: oznu/unms:latest
+    image: oznu/unms:latest  # use "armhf" instead of "latest" for arm devices
     restart: always
     ports:
       - 80:80
